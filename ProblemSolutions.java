@@ -1,13 +1,14 @@
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Jonah Goldberg / Section 002
  *
  *   This java file contains the problem solutions for the methods selectionSort,
  *   mergeSortDivisibleByKFirst, asteroidsDestroyed, and numRescueCanoes methods.
  *
  ********************************************************************/
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProblemSolutions {
 
@@ -33,14 +34,34 @@ public class ProblemSolutions {
     }
 
     public static void selectionSort(int[] values, boolean ascending ) {
-
+        //Length of values array
         int n = values.length;
 
+        //First loop
         for (int i = 0; i < n - 1; i++) {
+            //the current min index is i
+            int min_index = i;
+            //Start searching 1 in front of i (the end of the sorted region)
+            for(int j = i + 1; j < n; j++) {
+                if(ascending) { 
+                    if(values[j] < values[min_index]) {
+                        //Then we've found a new min index
+                        min_index = j; 
+                    }
+                } else {
+                    //Switch sign for descending values 
+                    if(values[j] > values[min_index]) {
+                        //Then we've found a new min index
+                        min_index = j; 
+                    }
+                }
 
-            // YOU CODE GOES HERE -- COMPLETE THE INNER LOOP OF THIS
-            // "SELECTION SORT" ALGORITHM.
-            // DO NOT FORGET TO ADD YOUR NAME / SECTION ABOVE
+            }
+
+            //Swap the min to the correct position
+            int temp = values[i];
+            values[i] = values[min_index];
+            values[min_index] = temp;
 
         }
 
@@ -101,6 +122,26 @@ public class ProblemSolutions {
         // ALLOCATES AUXILIARY DATA STRUCTURES (TEMPORARY ARRAYS). IT WILL BE EASIER
         // TO CODE WITH A SPACE COMPLEXITY OF O(N LOG N), WHICH IS FINE FOR PURPOSES
         // OF THIS PROGRAMMING EXERCISES.
+
+        List<Integer> isDivisibleByK = new ArrayList<Integer>(); 
+        List<Integer> notDivisible = new ArrayList<>();
+
+        //Left pointer 
+        int i = left;
+
+        //Mid pointer
+        int j = mid + 1;
+
+        while(i <= mid && j >= mid) {
+            if(arr[i] < arr[j]) {
+                
+            }
+        }
+
+        //Save length of array in n
+        int n = arr.length;
+
+
 
         return;
 
