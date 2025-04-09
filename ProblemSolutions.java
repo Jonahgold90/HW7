@@ -132,14 +132,64 @@ public class ProblemSolutions {
         //Mid pointer
         int j = mid + 1;
 
+
         while(i <= mid && j >= mid) {
-            if(arr[i] < arr[j]) {
-                
+            if(arr[i] <= arr[j]) {
+                //If its less than or equal to then we need to take from the left half
+                if(arr[i] % k == 0) {
+                    //Add to the isDivisible list
+                    isDivisibleByK.add(arr[i]);
+                } else {
+                    //Add to the not dibisible list
+                    notDivisible.add(arr[i]);
+                }
+                //Move to the next element on the left side
+                i++;
+            } else {
+                //Take from the right half
+                if(arr[j] % k == 0) {
+                    isDivisibleByK.add(arr[j]);
+                } else {
+                    notDivisible.add(arr[j]);
+                }
+                //Increment the right pointer one
+                j++;
             }
         }
 
-        //Save length of array in n
-        int n = arr.length;
+        //Check the left half for leftover elements
+        while(i <= mid) {
+            if(arr[i] % k == 0) {
+                isDivisibleByK.add(arr[i]);
+            } else {
+                notDivisible.add(arr[i]);
+            }
+            i++; //Move left pointer forward
+        }
+        
+        //Check the right half for leftover elements
+        while(j <= right) {
+            if(arr[j] % k == 0) {
+                isDivisibleByK.add(arr[j]);
+            } else {
+                notDivisible.add(arr[j]);
+            }
+            j++; //Move right pointer forward
+        }
+        
+        //Bring the elements back into the array 
+        int curr = left; 
+
+        //Start with the divisible elements as they should go first
+        for(int num : isDivisibleByK) {
+            //add the num to the current index in the array and increment the current index
+            arr[curr++] = num; 
+        }
+
+        //Then add the not divisible elements which should be sorted
+        for(int num : notDivisible) {
+            arr[curr++] = num;
+        }
 
 
 
